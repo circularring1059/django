@@ -43,5 +43,6 @@ urlpatterns = [
     path('getClass/', views.getClass),
     path('addClass/', views.addClass),
     path('delClass/', views.delClass),
+    path('editClass/', views.editClass),
 
 ]

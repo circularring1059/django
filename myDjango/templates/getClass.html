@@ -5,18 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>班级|<a href="/addClass/">添加</a></th>
-            <th>class_id</th>
-        </tr>
-        {%  for item in class_list %}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.class_id }}</td>
-            <td><a href="/delClass/?id={{ item.class_id }}">删除</a></td>
-        </tr>
-        {%  endfor %}
+
+        <table>
+            <tr>
+                <th>班级|<a href="/addClass/">添加</a></th>
+                <th>id</th>
+            </tr>
+            {%  for item in class_list %}
+            <tr>
+                <td>{{ item.class_name }}</td>
+                <td>{{ item.id }}</td>
+                <td><a href="/delClass/?id={{ item.id }}">删除</a></td>
+                <td><a href="/editClass/?id={{ item.id }}&class_name={{ item.class_name }}">编辑</a></td>
+            </tr>
+            {%  endfor %}
     </table>
+
 </body>
 </html>

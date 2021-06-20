@@ -1,0 +1,27 @@
+-- 班级表
+CREATE TABLE class(
+id INT PRIMARY KEY auto_increment,
+class_name CHAR(20) NOT NULL
+)charset utf8;
+
+-- 学生表
+CREATE TABLE Student(
+id INT PRIMARY KEY auto_increment,
+stu_name CHAR(20) NOT NULL,
+class_id INT,
+FOREIGN KEY(class_id) REFERENCES class(id) on delete cascade on update cascade
+)charset utf8;
+
+-- 老师表
+CREATE TABLE Teacher(
+id INT PRIMARY KEY auto_increment,
+th_name CHAR(20) NOT NULL
+)charset utf8;
+
+-- 老师和班级的关系表
+CREATE TABLE relationship(
+id INT PRIMARY KEY auto_increment,
+t_id INT,
+c_id INT,
+FOREIGN KEY(t_id) REFERENCES Teacher(id) on delete cascade on update cascade,
+FOREIGN KEY
