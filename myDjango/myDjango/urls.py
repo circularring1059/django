@@ -17,13 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,JsonResponse
+from app01 import views
 
 def login(request):
+    li = ["python", "golang", "shell", "java"]
+    dc = {"a":1, "b":"c"}
     print(request.GET)  #获取URL传值
     if request.method == "GET":
         print(request.method)
         # return HttpResponse("hello Django")
-        return render(request, 'login.html')
+        print(locals())
+        return render(request, 'login.html', locals())
     else:
         print(request.method)
         print(request.POST.get("username"))
@@ -36,5 +40,8 @@ def login(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login),
+    path('getClass/', views.getClass),
+    path('addClass/', views.addClass),
+    path('delClass/', views.delClass),
 
 ]
