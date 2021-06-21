@@ -5,7 +5,7 @@ class_name CHAR(20) NOT NULL
 )charset utf8;
 
 -- 学生表
-CREATE TABLE Student(
+CREATE TABLE student(
 id INT PRIMARY KEY auto_increment,
 stu_name CHAR(20) NOT NULL,
 class_id INT,

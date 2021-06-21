@@ -46,5 +46,6 @@ urlpatterns = [
     path('addClass/', views.addClass),
     path('delClass/', views.delClass),
     path('editClass/', views.editClass),
-
+    path('getStu/', views.getStu),
+    path('delStu/', views.delStu),
 ]
