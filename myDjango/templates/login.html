@@ -13,6 +13,23 @@
         {{msg}}
         <img src="/static/a.jpg"  alt="上海鲜花港 - 郁金香" />
     </form>
+<h1>{{li.0}}</h1>
+<h1>{{li.1}}</h1>
+<h1>{{li.2}}</h1>
+<h1>{{li.3}}</h1>
+<h1>{{li}}</h1>
+<h1>{{dc.a}}</h1>
+<h1>{{dc.b}}</h1>
+
+{% for item in li %}
+  <h1>{{item}}</h1>
+{% endfor %}
+
+
+{%  for item in dc %}
+    <h1>{{item}}</h1>
+{% endfor %}
+
 
 </body>
 </html>

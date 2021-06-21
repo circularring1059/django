@@ -20,9 +20,12 @@ from django.http import HttpResponse,JsonResponse
 
 def login(request):
     print(request.GET)  #获取URL传值
+    li = ["python", "golang", "java", "shell"]
+    dc = {'a':1, "b":"c"}
     if request.method == "GET":
         print(request.method)
         # return HttpResponse("hello Django")
+        print(locals())
         return render(request, 'login.html')
     else:
         print(request.method)
@@ -31,7 +34,7 @@ def login(request):
         if request.POST.get("passwd") =="123"  and request.POST.get("passwd") == "123":
             return redirect("https://www.baidu.com")
         else:
-            return render(request, "login.html", {"msg": "用户名或密码错误"})   #locals
+            return render(request, "login.html", {'li': ['python', 'golang', 'java', 'shell'], 'dc': {'a': 1, 'b': 'c'}})   #locals
 
 urlpatterns = [
     path('admin/', admin.site.urls),
