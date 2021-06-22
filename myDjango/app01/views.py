@@ -26,11 +26,11 @@ def  addClass(request):
         # return HttpResponse("addClass")
         name = request.POST.get('name')
         id = request.POST.get("classId")
-        sql = "insert into class(name, id) values('{}',{});".format(name, id)
+        sql = "insert into class(class_name) values('{}');".format(name)
         # sql = 'insert into class(name, id) values("通信五班", 11)'
         # return HttpResponse("hello")
         print(sql)
-        if id == None or name == None:
+        if name == None:
             raise("keyErr")
         else:
             import pymysql
@@ -59,7 +59,7 @@ def  delClass(request):
 
 def  editClass(request):
     id = request.GET.get("id")
-    name = request.GET.get("name")
+    name = request.GET.get("class_name")
     # print(id, name)
     if request.method == "GET":
         return render(request, "editClass.html", locals())
@@ -69,7 +69,7 @@ def  editClass(request):
         import pymysql
         connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
         cursor = connect.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("update class set name='{}' where id = {}".format(name, id))
+        cursor.execute("update class set class_name='{}' where id = {}".format(name, id))
         connect.commit()
         cursor.close()
         connect.close()
