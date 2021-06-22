@@ -103,14 +103,26 @@ def delStu(request):
 def addStu(request):
     # return HttpResponse("添加成功")
     if request.method == "GET":
-        return render(request, 'addStu.html')
+        import pymysql
+        connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring",
+                                  charset="utf8")
+        cursor = connect.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("select * from class")
+        id_list = cursor.fetchall()
+        cursor.close()
+        connect.close()
+        print(locals())
+        return render(request, 'addStu.html',locals())
     else:
-        # import pymysql
-        # connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
-        # cursor = connect.cursor()
-        # cursor.execute("insert into sutdent(stu_name, class_id) values('{}', {})".format(request.POST.get(stu_name),request.POST.get("class_name")))
-        # connect.commit()
-        # cursor.close()
-        # connect.close()
-        # return redirect("/getStu")
-        return HttpResponse(request.POST.get("stu_name"))
+        # id = request.POST.get("id")
+        # stu_name = request.POST.get("stu_name")
+        import pymysql
+        connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
+        cursor = connect.cursor()
+        cursor.execute("insert into student(stu_name, class_id) values('{}', {})".format(request.POST.get("stu_name"),request.POST.get("id")))
+        connect.commit()
+        cursor.close()
+        connect.close()
+        return redirect("/getStu")
+        # print(locals())
+        # return HttpResponse(request.POST.get("stu_name"))
