@@ -57,7 +57,7 @@ def  delClass(request):
     connect.close()
     return redirect("/getClass")
 
-def  editClass(request):
+def editClass(request):
     id = request.GET.get("id")
     name = request.GET.get("class_name")
     # print(id, name)
@@ -75,7 +75,7 @@ def  editClass(request):
         connect.close()
         return redirect("/getClass/")
 
-def  getStu(request):
+def getStu(request):
     import pymysql
     connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
     cursor = connect.cursor(pymysql.cursors.DictCursor)
@@ -126,3 +126,9 @@ def addStu(request):
         return redirect("/getStu")
         # print(locals())
         # return HttpResponse(request.POST.get("stu_name"))
+
+def editStu(request):
+    if request.method == "GET":
+        return render(request, "editStu.html", locals())
+    else:
+        pass

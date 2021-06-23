@@ -49,4 +49,5 @@ urlpatterns = [
     path('getStu/', views.getStu),
     path('delStu/', views.delStu),
     path('addStu/', views.addStu),
+    path('editStu/', views.editStu),
 ]
