@@ -6,8 +6,8 @@
 </head>
 <body>
     <form method="post", action="/editStu/">
-        <p>学生姓名:<input type="text", name="stu_name"></p>
-        <p>学生班级:<input type="text", name="class_name"></p>
+        <p>学生姓名:<input type="text", name="stu_name", value="{{ stu_name.0 }}"></p>
+        <p>学生班级:<input type="text", name="class_name" value="{{ class_name.0 }}"></p>
         <input type="submit">
     </form>
 

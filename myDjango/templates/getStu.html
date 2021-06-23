@@ -18,11 +18,10 @@
                 <td>{{ item.stu_name }}</td>
                 <td>{{ item.class_name }}</td>
                 <td><a href="/delStu?id={{ item.id }}">删除</a></td>
-                <td><a href="/delStu?id={{ item.id }}">编辑</a></td>
+                <td><a href="/editStu?id={{ item.id }}&stu_name={{ item.stu_name }}&class_id={{ item.class_id }}&class_name={{ item.class_name }}">编辑</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
 </body>
 </html>
