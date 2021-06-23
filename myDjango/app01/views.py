@@ -131,6 +131,15 @@ def addStu(request):
 def editStu(request):
     if request.method == "GET":
         print(request.GET)
-        return render(request, "editStu.html", request.GET)
+        import pymysql
+        connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
+        cursor = connect.cursor(pymysql.cursors.DictCursor)
+        # cursor.execute("select  student.id, stu_name, class_id, class_name  from student join class on student.class_id = class.id and student.id = {};".format(request.GET.get('id')))
+        class_list = cursor.execute("select  class_name from class;")
+        stu_list = cursor.fetchall()
+        cursor.close()
+        connect.close()
+        print("locals:", locals())
+        return render(request, "editStu.html", locals())
     else:
         pass
