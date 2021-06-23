@@ -5,11 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post", action="/editStu/">
-        <p>学生姓名:<input type="text", name="stu_name", value="{{ stu_list.stu_name }}"></p>
-        <p>学生班级:<input type="text", name="class_name" value="{{ stu_list.class_name }}"></p>
+    <form method="post", action="/editStu/", id="stu_name">
+        <p>学生姓名:<input type="text", name="stu_name", value="{{ data_get.stu_name }}"></p>
+        <input type="hidden", name="stu_id", value="{{ data_get.id}}">
+<!--        <p>学生班级:<input type="text", name="class_name" value="{{ stu_list.class_name }}"></p>-->
         <input type="submit">
     </form>
+    <select name="class_id", form="stu_name">
+        {% for item in class_list %}
+        <option value="{{ item.id }}">{{ item.class_name }}</option>
+        {% endfor %}
+    </select>
 
 </body>
 </html>
