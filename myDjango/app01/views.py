@@ -25,13 +25,12 @@ def  addClass(request):
         print(postData)
         # return HttpResponse("addClass")
         name = request.POST.get('name')
-        id = request.POST.get("classId")
         sql = "insert into class(class_name) values('{}');".format(name)
         # sql = 'insert into class(name, id) values("通信五班", 11)'
         # return HttpResponse("hello")
         print(sql)
-        if name == None:
-            raise("keyErr")
+        if not name:
+            return redirect("/addClass/")
         else:
             import pymysql
             connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
