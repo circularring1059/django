@@ -30,7 +30,7 @@ def  addClass(request):
         # return HttpResponse("hello")
         print(sql)
         if not name:
-            return redirect("/addClass/")
+            return  render(request, "addClass.html", {"msg":"班级名字不能为空"})
         else:
             import pymysql
             connect = pymysql.connect(host="192.168.10.173", port=3309, user="root", passwd="ring", db="ring", charset="utf8")
