@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,JsonResponse
 from app01 import views
@@ -50,4 +50,5 @@ urlpatterns = [
     path('delStu/', views.delStu),
     path('addStu/', views.addStu),
     path('editStu/', views.editStu),
+    path('one/', include("one.urls")),
 ]
