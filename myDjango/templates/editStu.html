@@ -10,12 +10,15 @@
         <input type="hidden", name="stu_id", value="{{ data_get.id}}">
 <!--        <p>学生班级:<input type="text", name="class_name" value="{{ stu_list.class_name }}"></p>-->
         <input type="submit">
+        <select name="class_id", form="stu_name">
+            {% for item in class_list %}
+                {% if item.id == data_get.class_id %}
+                    <option selected value="{{ item.id }}">{{ item.class_name }}</option>
+                {% else %}}
+                    <option  value="{{ item.id }}">{{ item.class_name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
     </form>
-    <select name="class_id", form="stu_name">
-        {% for item in class_list %}
-        <option value="{{ item.id }}">{{ item.class_name }}</option>
-        {% endfor %}
-    </select>
-
 </body>
 </html>
