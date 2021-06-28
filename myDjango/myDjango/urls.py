@@ -51,4 +51,5 @@ urlpatterns = [
     path('addStu/', views.addStu),
     path('editStu/', views.editStu),
     path('one/', include("one.urls")),
+    path('myapp/', include("myapp.urls")),
 ]
