@@ -74,19 +74,17 @@ WSGI_APPLICATION = 'myDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'ring', # 数据库名
-        'USER': 'root', # 账号
-        'PASSWORD': 'ring', # 密码
-        'HOST': '192.168.10.173', # HOST
-        'POST': 3309, # 端口
+        'HOST': '192.168.10.173',  # 数据库主机
+        'PORT': 3306,  # 数据库端口
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'root',  # 数据库用户密码
+        'NAME': 'ring'  # 数据库名字
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

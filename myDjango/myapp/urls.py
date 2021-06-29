@@ -3,4 +3,7 @@ from myapp import views
 
 urlpatterns = [
     path('index/', views.index),
+    path('showStu/', views.showStu),
+    path('addStu/', views.addStu),
+    path('delStu/<int:stu_id>/', views.delStu, name="delStu"),
 ]

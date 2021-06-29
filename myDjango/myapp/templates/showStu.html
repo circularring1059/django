@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        {% for item in stu_list %}
+            <div>{{ item.stu_name }}--{{ item.sc.class_name }}--<a href="{% url "delStu" item.id %}">删除</a></div>
+        {% endfor %}
+</body>
+</html>

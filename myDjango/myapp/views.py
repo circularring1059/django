@@ -1,8 +1,25 @@
 from django.shortcuts import render, redirect
 from django.urls import path, re_path
 from django.http import HttpResponse, Http404
-
+from myapp import models
 # Create your views here.
 def index(request):
+    # return HttpResponse("myapp_index")
+    return render(request, "myapp_index.html")
 
-    return HttpResponse("myapp_index")
+def showStu(request):
+    stu_list = models.Student.objects.all()
+    return render(request, "showStu.html", locals())
+
+
+def addStu(request):
+    stu_list = ["桃子", "李子", "香蕉", "葡萄", "荔枝", "芒果", "西瓜"]
+    for stu in stu_list:
+       models.Student.objects.create(stu_name=stu)
+    return redirect("/myapp/showStu")
+
+
+def delStu(request, stu_id):
+    # return HttpResponse("学生{}删除成功".format(stu_id))
+    models.Student.objects.all().filter(id=stu_id).delete()
+    return redirect("/myapp/showStu/")
