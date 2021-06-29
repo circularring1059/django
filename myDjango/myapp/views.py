@@ -2,15 +2,12 @@ from django.shortcuts import render, redirect
 from django.urls import path, re_path
 from django.http import HttpResponse, Http404
 from myapp import models
-# Create your views here.
 def index(request):
-    # return HttpResponse("myapp_index")
     return render(request, "myapp_index.html")
 
 def showStu(request):
     stu_list = models.Student.objects.all()
     return render(request, "showStu.html", locals())
-
 
 def addStu(request):
     # stu_list = ["桃子", "李子", "香蕉", "葡萄", "荔枝", "芒果", "西瓜"]
@@ -28,9 +25,12 @@ def addStu(request):
 
 def editStu(request, stu_id):
     if request.method == "GET":
-        stu = models.Student.objects.all().filter(id=stu_id).first()
+        try:
+            stu = models.Student.objects.all().get(id=stu_id)
+        except Exception as e:
+            return HttpResponse("该学生不存在")
         class_list = models.Class.objects.all()
-        return render(request, "editStu.html",locals())
+        return render(request, "editStu.html", locals())
     else:
         models.Student.objects.all().filter(id=stu_id).update(stu_name=request.POST.get("stu_name"), sc_id=request.POST.get("sc_id"))
         return redirect("/myapp/showStu")
@@ -52,7 +52,7 @@ def addClass(request):
     else:
         print(request.POST.get("class_name"))
         if models.Class.objects.all().filter(class_name=request.POST.get("class_name")).count():
-            return HttpResponse("改班级已存在")
+            return HttpResponse("该班级已存在")
         else:
             models.Class.objects.create(class_name=request.POST.get("class_name"))
             return redirect("/myapp/showClass")
