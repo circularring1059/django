@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post", action="{% url "editStu" stu_id %}">
+        <div>学姓名:<input type="text", name="stu_name" value="{{ stu.stu_name }}"></div>
+        <div>学生班级:
+            <select name="sc_id">
+            {% for class in class_list %}
+                {% if stu.sc.id == clsss.id  %}
+                <option selected value="{{ class.id }}">{{ class.class_name }}</option>
+                {% else %}
+                <option selected value="{{ class.id }}">{{ class.class_name }}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+        </div>
+        <div><input type="submit"></div>
+    </form>
+</body>
+</html>

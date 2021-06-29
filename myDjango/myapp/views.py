@@ -21,11 +21,19 @@ def addStu(request):
         print(locals())
         for i in  class_list:
             print(i.id, i.class_name)
-        return render(request, "addstu.html",locals())
+        return render(request, "addStu.html",locals())
     else:
         models.Student.objects.create(stu_name=request.POST.get("stu_name"), sc_id=request.POST.get("class_id"))
         return redirect("/myapp/showStu")
 
+def editStu(request, stu_id):
+    if request.method == "GET":
+        stu = models.Student.objects.all().filter(id=stu_id).first()
+        class_list = models.Class.objects.all()
+        return render(request, "editStu.html",locals())
+    else:
+        models.Student.objects.all().filter(id=stu_id).update(stu_name=request.POST.get("stu_name"), sc_id=request.POST.get("sc_id"))
+        return redirect("/myapp/showStu")
 
 def delStu(request, stu_id):
     # return HttpResponse("学生{}删除成功".format(stu_id))
