@@ -13,10 +13,18 @@ def showStu(request):
 
 
 def addStu(request):
-    stu_list = ["桃子", "李子", "香蕉", "葡萄", "荔枝", "芒果", "西瓜"]
-    for stu in stu_list:
-       models.Student.objects.create(stu_name=stu)
-    return redirect("/myapp/showStu")
+    # stu_list = ["桃子", "李子", "香蕉", "葡萄", "荔枝", "芒果", "西瓜"]
+    # for stu in stu_list:
+    #    models.Student.objects.create(stu_name=stu)
+    if request.method == 'GET':
+        class_list  = models.Class.objects.all()
+        print(locals())
+        for i in  class_list:
+            print(i.id, i.class_name)
+        return render(request, "addstu.html",locals())
+    else:
+        models.Student.objects.create(stu_name=request.POST.get("stu_name"), sc_id=request.POST.get("class_id"))
+        return redirect("/myapp/showStu")
 
 
 def delStu(request, stu_id):
