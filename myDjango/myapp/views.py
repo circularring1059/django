@@ -39,3 +39,27 @@ def delStu(request, stu_id):
     # return HttpResponse("学生{}删除成功".format(stu_id))
     models.Student.objects.all().filter(id=stu_id).delete()
     return redirect("/myapp/showStu/")
+
+
+def showClass(request):
+    class_list = models.Class.objects.all()
+    return render(request,"showClass.html", locals())
+
+
+def addClass(request):
+    if request.method == "GET":
+        return render(request, "addClass.html")
+    else:
+        print(request.POST.get("class_name"))
+        if models.Class.objects.all().filter(class_name=request.POST.get("class_name")).count():
+            return HttpResponse("改班级已存在")
+        else:
+            models.Class.objects.create(class_name=request.POST.get("class_name"))
+            return redirect("/myapp/showClass")
+
+def editClass(request, class_id):
+    return HttpResponse("editClass")
+
+
+def delClass(request, class_id):
+    return HttpResponse("delStu")
