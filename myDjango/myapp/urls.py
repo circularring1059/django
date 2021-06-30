@@ -11,4 +11,6 @@ urlpatterns = [
     path('addClass/', views.addClass, name="addClass"),
     path('editClass/<int:class_id>/', views.editClass, name="editClass"),
     path('delClass/<int:class_id>/', views.delClass, name="delClass"),
+    path('getPerson/', views.getPerson, name="getPerson"),
+    path('getCat/', views.getCat, name="getCat"),
 ]

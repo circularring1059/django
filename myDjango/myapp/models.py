@@ -14,7 +14,7 @@ class Cat_type(models.Model):
 
 class Cat(models.Model):
     cat_name = models.CharField(max_length=8)
-    cat_age = models.IntegerField(max_length=8)
+    cat_age = models.IntegerField()
     ct = models.ForeignKey(Cat_type, on_delete=models.SET_NULL, default=1, null=True)   #对应的cat_type 后其值变为None
 
 class Nationality(models.Model):

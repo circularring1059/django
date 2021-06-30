@@ -9,8 +9,8 @@ on_delete=models.SET_NULL, # 删除关联数据,与之关联的值设置为null�
 on_delete=models.SET_DEFAULT, # 删除关联数据,与之关联的值设置为默认值（前提FK字段需要设置默认值,一对一同理）
 on_delete=models.SET, # 删除关联数据,
 """
-
-
+import pymysql
+from  django.db import connection
 from django.shortcuts import render, redirect
 from django.urls import path, re_path
 from django.http import HttpResponse, Http404
@@ -79,6 +79,22 @@ def editClass(request, class_id):
         return redirect("/myapp/showClass")
 
 def delClass(request, class_id):
-    print(class_id)
     models.Class.objects.all().filter(id=class_id).delete()
     return redirect("/myapp/showClass")
+
+
+def getPerson(request):
+    # orm 执行原生sql   ***这里必须包含主键***
+    person_list = models.Person.objects.raw("select id, pe_name from myapp_person")
+    for person in person_list:
+        print(person.id, person.pe_name)
+    return HttpResponse("getPerson")
+
+
+def getCat(request):
+    cursor = connection.cursor()
+    cursor.execute('select * from myapp_cat')
+    cat_list = cursor.fetchall()
+    for cat in cat_list:
+        print(cat)
+    return HttpResponse("getCat")
