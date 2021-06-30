@@ -1,3 +1,16 @@
+"""
+on_delete=None, # 删除关联表中的数据时,当前表与其关联的field的行为
+on_delete=models.CASCADE, # 删除关联数据,与之关联也删除
+on_delete=models.DO_NOTHING, # 删除关联数据,什么也不做
+on_delete=models.PROTECT, # 删除关联数据,引发错误ProtectedError
+# models.ForeignKey('关联表', on_delete=models.SET_NULL, blank=True, null=True)
+on_delete=models.SET_NULL, # 删除关联数据,与之关联的值设置为null（前提FK字段需要设置为可空,一对一同理）
+# models.ForeignKey('关联表', on_delete=models.SET_DEFAULT, default='默认值')
+on_delete=models.SET_DEFAULT, # 删除关联数据,与之关联的值设置为默认值（前提FK字段需要设置默认值,一对一同理）
+on_delete=models.SET, # 删除关联数据,
+"""
+
+
 from django.shortcuts import render, redirect
 from django.urls import path, re_path
 from django.http import HttpResponse, Http404
@@ -66,4 +79,6 @@ def editClass(request, class_id):
         return redirect("/myapp/showClass")
 
 def delClass(request, class_id):
-    return HttpResponse("delStu")
+    print(class_id)
+    models.Class.objects.all().filter(id=class_id).delete()
+    return redirect("/myapp/showClass")
