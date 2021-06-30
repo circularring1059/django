@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post", action="{% url "editClass" class_id %}">
+        <div>班级:<input type="text", name="class_name" value="{{ class_name.class_name }}"></div>
+        </div>
+        <div><input type="submit"></div>
+    </form>
+</body>
+</html>

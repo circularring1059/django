@@ -58,8 +58,12 @@ def addClass(request):
             return redirect("/myapp/showClass")
 
 def editClass(request, class_id):
-    return HttpResponse("editClass")
-
+    if request.method == "GET":
+        class_name = models.Class.objects.all().values("class_name").get(id=class_id)
+        return render(request, "editClass.html", locals())
+    else:
+        models.Class.objects.all().filter(id=class_id).update(class_name=request.POST.get("class_name"))
+        return redirect("/myapp/showClass")
 
 def delClass(request, class_id):
     return HttpResponse("delStu")
