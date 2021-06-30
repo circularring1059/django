@@ -15,6 +15,8 @@ from django.shortcuts import render, redirect
 from django.urls import path, re_path
 from django.http import HttpResponse, Http404
 from myapp import models
+from django.views import View
+
 def index(request):
     return render(request, "myapp_index.html")
 
@@ -93,8 +95,17 @@ def getPerson(request):
 
 def getCat(request):
     cursor = connection.cursor()
+    #可以不用主键
     cursor.execute('select * from myapp_cat')
     cat_list = cursor.fetchall()
     for cat in cat_list:
         print(cat)
     return HttpResponse("getCat")
+
+#
+class EditCat(View):
+    def get(self, request):
+        return HttpResponse("get method")
+
+    def post(self, request):
+        return HttpResponse("post methodd")

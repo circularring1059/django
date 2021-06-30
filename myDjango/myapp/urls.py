@@ -13,4 +13,5 @@ urlpatterns = [
     path('delClass/<int:class_id>/', views.delClass, name="delClass"),
     path('getPerson/', views.getPerson, name="getPerson"),
     path('getCat/', views.getCat, name="getCat"),
+    path('EditCat/', views.EditCat.as_view(), name="EditCat"),
 ]
