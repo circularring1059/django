@@ -16,6 +16,7 @@ from django.urls import path, re_path
 from django.http import HttpResponse, Http404
 from myapp import models
 from django.views import View
+from django.db.models import Max, Min, Sum
 
 def index(request):
     return render(request, "myapp_index.html")
@@ -103,7 +104,7 @@ def getCat(request):
         print(cat)
     return HttpResponse("getCat")
 
-#
+#cbv
 class EditCat(View):
     def get(self, request):
         return HttpResponse("get method")
