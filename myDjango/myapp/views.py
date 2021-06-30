@@ -58,6 +58,7 @@ def delStu(request, stu_id):
 
 def showClass(request):
     class_list = models.Class.objects.all()
+    print(class_list.query)  #query  orm 转成 sql
     return render(request,"showClass.html", locals())
 
 
