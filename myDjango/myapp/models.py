@@ -20,6 +20,9 @@ class Cat(models.Model):
     cat_age = models.IntegerField()
     ct = models.ForeignKey(Cat_type, on_delete=models.SET_NULL, default=1, null=True)   #对应的cat_type 后其值变为None
 
+    def __str__(self):
+        return ("name:{} age:{}".format(self.cat_name, self.cat_age))
+
 class Nationality(models.Model):
     na_name = models.CharField(max_length=8)
 

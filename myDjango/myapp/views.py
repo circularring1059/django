@@ -17,6 +17,7 @@ from django.http import HttpResponse, Http404
 from myapp import models
 from django.views import View
 from django.db.models import Max, Min, Sum
+from django.db.models import Q, F
 
 def index(request):
     return render(request, "myapp_index.html")
@@ -34,7 +35,6 @@ def showStu(request):
     # stu_list = models.Student.objects.all().filter(stu_name__contains="桃")  # endwith
     # stu_list = models.Student.objects.all().filter(stu_name__exact="子")  #   精确查找   加i 不 区分大小写
     stu_list = models.Student.objects.all().exclude(id=57)  #  排除id  等于57
-    # stu_list = models.Student.objects.all().filter(stu_name__exact="子")  #   精确查找
     print(stu_list)
     return render(request, "showStu.html", locals())
 
@@ -110,12 +110,20 @@ def getPerson(request):
 
 
 def getCat(request):
-    cursor = connection.cursor()
-    #可以不用主键
-    cursor.execute('select * from myapp_cat')
-    cat_list = cursor.fetchall()
-    for cat in cat_list:
-        print(cat)
+    # cursor = connection.cursor()
+    # #可以不用主键
+    # cursor.execute('select * from myapp_cat')
+    # cat_list = cursor.fetchall()
+    # for cat in cat_list:
+    #     print(cat)
+    # models.Cat.objects.all().update(cat_age= F("cat_age") + 1)   #  F 元数据操作
+    # cat_list = models.Cat.objects.all()
+    # cat_one = models.Cat.objects.all().filter(cat_name="二猫").first()
+    # print(cat_one.cat_age)
+    # cat_one.cat_age += 1
+    # cat_one.save()
+    # print(cat_one)
+    # cat_one = models.Cat.objects.all().filter(cat_age=id)
     return HttpResponse("getCat")
 
 #cbv
