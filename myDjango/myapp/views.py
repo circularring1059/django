@@ -22,8 +22,22 @@ def index(request):
     return render(request, "myapp_index.html")
 
 def showStu(request):
-    stu_list = models.Student.objects.all()
+    # stu_list = models.Student.objects.all()
+    # stu_list = models.Student.objects.all().filter(id__gt=100)  # __gt   大于100
+    # stu_list = models.Student.objects.all().filter(id__gte=100)  # __gt   大于等于100
+    # stu_list = models.Student.objects.all().filter(sc_id__lt=-1)  # __lt   小于-1
+    # stu_list = models.Student.objects.all().filter(id__lte=0)  # __gt   小于等于等于0
+    # stu_list = models.Student.objects.all().filter(id__in=[2, 66, 57])  # in   2, 66, 57   == for  i in string:
+    # stu_list = models.Student.objects.all().filter(id__range=(66,100))  # range    范围
+    # stu_list = models.Student.objects.all().filter(stu_name__startswith="葡")  # startwith
+    # stu_list = models.Student.objects.all().filter(stu_name__endswith="子")  # endwith
+    # stu_list = models.Student.objects.all().filter(stu_name__contains="桃")  # endwith
+    # stu_list = models.Student.objects.all().filter(stu_name__exact="子")  #   精确查找   加i 不 区分大小写
+    stu_list = models.Student.objects.all().exclude(id=57)  #  排除id  等于57
+    # stu_list = models.Student.objects.all().filter(stu_name__exact="子")  #   精确查找
+    print(stu_list)
     return render(request, "showStu.html", locals())
+
 
 def addStu(request):
     # stu_list = ["桃子", "李子", "香蕉", "葡萄", "荔枝", "芒果", "西瓜"]

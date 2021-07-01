@@ -9,6 +9,9 @@ class Student(models.Model):
     stu_name  = models.CharField(max_length=8)
     sc = models.ForeignKey(Class, on_delete=None, default=1)
 
+    def __str__(self):
+        return ('name:{},id:{},sc_id:{}'.format(self.stu_name, self.id,  self.sc_id))
+
 class Cat_type(models.Model):
     cat_type_name = models.CharField(max_length=8)
 
