@@ -6,8 +6,19 @@
 </head>
 <body>
         <div><a href="{% url "addStu" %}">添加</a></div>
-        {% for item in stu_list %}
+        {% for item in page.object_list %}
             <div>{{ item.stu_name }}--{{ item.sc.class_name }}--<a href="{% url "delStu" item.id %}">删除</a>--<a href="{% url "editStu" item.id %}">编辑</a></div>
         {% endfor %}
+        <div>
+            {% if page.has_previous %}
+                <a href="/myapp/showStu/?page={{ page.previous_page_number }}">上一页</a>
+            {% endif %}
+            {% for num in page.paginator.page_range %}
+                <a href="/myapp/showStu/?={{ num }}">{{ num }}</a>
+            {% endfor %}
+            {% if page.has_next %}
+                <a href="/myapp/showStu/?page={{ page.next_page_number }}">下一页</a>
+            {% endif %}
+        </div>
 </body>
 </html>

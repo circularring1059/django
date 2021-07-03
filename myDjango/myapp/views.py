@@ -23,7 +23,8 @@ def index(request):
     return render(request, "myapp_index.html")
 
 def showStu(request):
-    # stu_list = models.Student.objects.all()
+    current_page = request.GET.get("page",1)  #开始默认为第一页
+    stu_list = models.Student.objects.all()
     # stu_list = models.Student.objects.all().filter(id__gt=100)  # __gt   大于100
     # stu_list = models.Student.objects.all().filter(id__gte=100)  # __gt   大于等于100
     # stu_list = models.Student.objects.all().filter(sc_id__lt=-1)  # __lt   小于-1
@@ -34,7 +35,19 @@ def showStu(request):
     # stu_list = models.Student.objects.all().filter(stu_name__endswith="子")  # endwith
     # stu_list = models.Student.objects.all().filter(stu_name__contains="桃")  # endwith
     # stu_list = models.Student.objects.all().filter(stu_name__exact="子")  #   精确查找   加i 不 区分大小写
-    stu_list = models.Student.objects.all().exclude(id=57)  #  排除id  等于57
+    # stu_list = models.Student.objects.all().exclude(id=57)  #  排除id  等于57
+    #分页
+    from django.core.paginator import Page, PageNotAnInteger, Paginator, EmptyPage, InvalidPage
+    #实例化page 对象
+    paginator = Paginator(stu_list, 2)
+    #page页码对象
+
+    try:
+        page = paginator.page(current_page)  #这个current_page  type 为str时可以自定转为int  前提是能转为int
+    except EmptyPage as e:
+        page = paginator.page((1))
+    except PageNotAnInteger as e:
+        page = paginator.page(1)
     print(stu_list)
     return render(request, "showStu.html", locals())
 
