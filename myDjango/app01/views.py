@@ -151,3 +151,6 @@ def editStu(request):
         cursor.close()
         connect.close()
         return  redirect("/getStu")
+
+def nameSpaceIndex(request):
+    return HttpResponse(request.resolver_math.name)

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'one',
     'myapp',
+    "two",
 ]
 
 MIDDLEWARE = [

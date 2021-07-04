@@ -110,6 +110,7 @@ def editClass(request, class_id):
         return redirect("/myapp/showClass")
 
 def delClass(request, class_id):
+    print(class_id)
     models.Class.objects.all().filter(id=class_id).delete()
     return redirect("/myapp/showClass")
 

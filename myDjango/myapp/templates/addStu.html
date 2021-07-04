@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="{% url "addStu" %}">
+    <form method="post" action="{% url "myapp:addStu" %}">
         <div>学生姓名:<input type="text" name="stu_name"></div>
         <div>学生班级:<select name="class_id">
             {% for class in class_list %}

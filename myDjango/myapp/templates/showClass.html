@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-        <div><a href="{% url "addClass" %}">添加</a></div>
+        <div><a href="{% url "myapp:addClass" %}">添加</a></div>
         {% for class in class_list %}
-            <div>{{ class.class_name }}--<a href="{% url "delClass" class.id %}">删除</a>--<a href="{% url "editClass" class.id %}">编辑</a></div>
+            <div>{{ class.class_name }}--<a href="{% url "myapp:delClass" class.id %}">删除</a>--<a href="{% url "myapp:editClass" class.id %}">编辑</a></div>
         {% endfor %}
 </body>
 </html>

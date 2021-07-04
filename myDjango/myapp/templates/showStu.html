@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-        <div><a href="{% url "addStu" %}">添加</a></div>
+        <div><a href="{% url "myapp:addStu" %}">添加</a></div>
         {% for item in page.object_list %}
-            <div>{{ item.stu_name }}--{{ item.sc.class_name }}--<a href="{% url "delStu" item.id %}">删除</a>--<a href="{% url "editStu" item.id %}">编辑</a></div>
+            <div>{{ item.stu_name }}--{{ item.sc.class_name }}--<a href="{% url "myapp:delStu" item.id %}">删除</a>--<a href="{% url "myapp:editStu" item.id %}">编辑</a></div>
         {% endfor %}
         <div>
             {% if page.has_previous %}
