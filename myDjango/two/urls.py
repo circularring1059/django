@@ -6,5 +6,7 @@ app_name ="two"
 urlpatterns = [
     path('index/', views.index, name="index"),
     path('getStu/', views.getStu, name="getStu"),
+    path('goto/', views.goto, name="goto"),
+    path('getCar/', views.getCar, name="getCar"),
 
 ]

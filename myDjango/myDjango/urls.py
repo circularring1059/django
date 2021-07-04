@@ -51,6 +51,7 @@ urlpatterns = [
     path('addStu/', views.addStu),
     path('editStu/', views.editStu),
     path('one/', include("one.urls", namespace="one")),
+    path('two/', include("two.urls", namespace="two")),
     path('myapp/', include("myapp.urls", namespace="myapp")),
     path("read/",include("two.urls", namespace="read")),  #namespace 区分两url
     path("write/",include("two.urls", namespace="write")),
