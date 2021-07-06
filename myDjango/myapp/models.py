@@ -1,9 +1,19 @@
 from django.db import models
-
+from django.db.models.manager import Manager
 # Create your models here.
+
+#自定义manager
+class MyManager(Manager):
+    def all(self):
+    #     return Manager.all(self).filter(class_name__contains="通信")
+        print(super().get_queryset())
+        return self.get_queryset().filter(class_name__contains="电信")
+
+
 
 class Class(models.Model):
     class_name = models.CharField(max_length=8)
+    objects = MyManager()
 
 class Student(models.Model):
     stu_name  = models.CharField(max_length=8)
