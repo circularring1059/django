@@ -34,7 +34,8 @@ def set_salt_cookie(request):
 
 
 def get_salt_cookie(request):
-    value = request.get_signed_cookie(key="one", salt="hello")
+    import datetime
+    value = request.get_signed_cookie(key="one", salt="hello", expires=datetime.datetime.now()+datetime.timedelta(days=-2))   #设置两天后过期
     # one = request.get_signed_cookie("one", salt="hello")
     if value:
         return HttpResponse("salt_cookie is {}".format(value,))
