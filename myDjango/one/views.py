@@ -29,14 +29,13 @@ def get_cookie(request):
 
 def set_salt_cookie(request):
     response = HttpResponse("set_salt_cookie")
-    response.set_signed_cookie("one", "two", salt="hello",)
-    return HttpResponse("set_signed_cookie")
+    response.set_signed_cookie(key="one", value="two", salt="hello",max_age=24*60*60, path="/" )
+    return response
 
-#
-# def get_salt_cookie(request):
-#     try:
-#         one = request.get_signed_cookie(key="one", salt="hello")
-#     # if one:
-#     except Exception as e:
-#         return HttpResponse("salt_cookie is {}".format(one,))
-#     return HttpResponse("获取salt_cookie失败")
+
+def get_salt_cookie(request):
+    value = request.get_signed_cookie(key="one", salt="hello")
+    # one = request.get_signed_cookie("one", salt="hello")
+    if value:
+        return HttpResponse("salt_cookie is {}".format(value,))
+    return HttpResponse("获取salt_cookie失败")
