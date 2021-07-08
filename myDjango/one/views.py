@@ -39,3 +39,23 @@ def get_salt_cookie(request):
     if value:
         return HttpResponse("salt_cookie is {}".format(value,))
     return HttpResponse("获取salt_cookie失败")
+
+
+def login(request):
+    login_info = request.COOKIES.get("login", None)
+    if login_info:
+        name, passwd = login_info.split("-")
+        print(name, passwd)
+    else:
+        pass
+    if request.method == "GET":
+        return render(request, "one_login.html", locals())
+    else:
+        if request.POST.get("name") == "ring" and request.POST.get("passwd") == "yuan":
+            response = HttpResponse("登入成功")
+            response.set_cookie("login", request.POST.get("name")+"-"+request.POST.get("passwd"), max_age=3600, path="/" )
+            return response
+    response = HttpResponse("登入失败")
+    # response.content("fail")
+    response.delete_cookie("login")
+    return response
