@@ -28,14 +28,14 @@ def get_cookie(request):
     return HttpResponse("cookie is not exist")
 
 def set_salt_cookie(request):
+    import datetime
     response = HttpResponse("set_salt_cookie")
-    response.set_signed_cookie(key="one", value="two", salt="hello",max_age=24*60*60, path="/" )
+    response.set_signed_cookie(key="one", value="two", salt="hello", expires=datetime.datetime.now()+datetime.timedelta(days=2), path="/" )  #设置两天后过期
     return response
 
 
 def get_salt_cookie(request):
-    import datetime
-    value = request.get_signed_cookie(key="one", salt="hello", expires=datetime.datetime.now()+datetime.timedelta(days=-2))   #设置两天后过期
+    value = request.get_signed_cookie(key="one", salt="hello",)
     # one = request.get_signed_cookie("one", salt="hello")
     if value:
         return HttpResponse("salt_cookie is {}".format(value,))
