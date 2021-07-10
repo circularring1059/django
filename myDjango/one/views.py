@@ -35,11 +35,11 @@ def set_salt_cookie(request):
 
 
 def get_salt_cookie(request):
-    value = request.get_signed_cookie(key="one", salt="hello",)
-    # one = request.get_signed_cookie("one", salt="hello")
-    if value:
+    try:
+        value = request.get_signed_cookie(key="one", salt="hello",)
         return HttpResponse("salt_cookie is {}".format(value,))
-    return HttpResponse("获取salt_cookie失败")
+    except Exception as e:
+        return HttpResponse("获取salt_cookie失败")
 
 
 def login(request):
@@ -67,3 +67,28 @@ def login(request):
     # response.content("fail")
     response.delete_cookie("login")
     return response
+
+
+def set_session(request):
+    request.session["dir1"] = "file1"   #session 对象   会生成一个sessionid  放在cookie 里
+    request.session["dir"] = "file"   #session 对象   会生成一个sessionid  放在cookie 里
+    """
+    global_settings
+    
+    SESSION_ENGINE = 'django.contrib.sessions.backends.db'   # 引擎（默认）
+     
+    SESSION_COOKIE_NAME ＝ "sessionid"                       # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串（默认）
+    SESSION_COOKIE_PATH ＝ "/"                               # Session的cookie保存的路径（默认）
+    SESSION_COOKIE_DOMAIN = None                             # Session的cookie保存的域名（默认）
+    SESSION_COOKIE_SECURE = False                            # 是否Https传输cookie（默认）
+    SESSION_COOKIE_HTTPONLY = True                           # 是否Session的cookie只支持http传输（默认）
+    SESSION_COOKIE_AGE = 1209600                             # Session的cookie失效日期（2周）（默认）
+    SESSION_EXPIRE_AT_BROWSER_CLOSE = False                  # 是否关闭浏览器使得Session过期（默认）
+    SESSION_SAVE_EVERY_REQUEST = False                       # 是否每次请求都保存Session，默认修改之后才保存（默认）
+    """
+    return HttpResponse("设置seesion成功")
+
+
+def get_session(request):
+    # return HttpResponse(request.session.get("dir"))
+    return HttpResponse("hello")

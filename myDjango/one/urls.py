@@ -11,6 +11,8 @@ urlpatterns = [
     path("get_cookie/", views.get_cookie),
     path("set_salt_cookie/", views.set_salt_cookie),
     path("get_salt_cookie/", views.get_salt_cookie),
+    path("set_session/", views.set_session),
+    path("get_session/", views.get_session),
     path("login/", views.login),
 ]
 

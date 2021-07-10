@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'myDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '192.168.10.173',  # 数据库主机
+        'HOST': '192.168.112.12',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'root',  # 数据库用户名
         'PASSWORD': 'root',  # 数据库用户密码
-        'NAME': 'ring'  # 数据库名字
+        'NAME': 'django'  # 数据库名字
     }
 }
 # Password validation
@@ -130,3 +130,5 @@ STATIC_URL = '/static/'
 print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 print(os.path.dirname(os.path.abspath(__file__)))
 print(os.path.abspath(__file__))
+
+
