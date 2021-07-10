@@ -116,9 +116,13 @@ def register(request):
     if request.method == "GET":
         return render(request, "register.html")
     else:
-        print(88)
         if request.POST.get("name") and request.POST.get("passwd"):
-            models.User.create(request.POST.get("name"), request.POST.get("passwd"))
-            return render(request, "token_login.html")
+            models.User.objects.create(user_name=request.POST.get("name"), user_passwd=request.POST.get("passwd"))
+            # return render(request, "token_login.html")
+            return redirect("/one/token_login")
         else:
             return render(request, "register.html", {"msg":"输入不合法"})
+
+
+def token_login(request):
+    return render(request, "token_login.html")
