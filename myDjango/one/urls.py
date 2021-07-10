@@ -15,5 +15,6 @@ urlpatterns = [
     path("get_session/", views.get_session),
     path("del_session/", views.del_session),
     path("login/", views.login),
+    path("register/", views.register),
 ]
 

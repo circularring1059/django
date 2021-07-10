@@ -2,6 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from one import models
+
+
 def index(request):
     # return HttpResponse("index")
     return render(request, "one_index.html")
@@ -73,7 +76,7 @@ def set_session(request):
     可以有多个session  但只有一个sessionid,对于每个客户端，生成一条数据库记录，发生改变时，sessionid 不变，sessionData 改变
     session 不会重复设置，除非有更新或者被删除了
     """
-    request.session["dir"] = "file"   #session 对象   会生成一个sessionid  放在cookie 里
+    request.session["dir"] = "file"     #session 对象   会生成一个sessionid  放在cookie 里
     request.session["dir1"] = "file1"   #session 对象   会生成一个sessionid  放在cookie 里
     request.session["dir2"] = "file2"   #session 对象   会生成一个sessionid  放在cookie 里
     request.session["dir3"] = "file3"   #session 对象   会生成一个sessionid  放在cookie 里
@@ -107,3 +110,15 @@ def del_session(request):
     # request.session.clear()  #清空所有session 可重复操作
     request.session.flush()  #清空所有session和相应的seesionid  并且删除删除数据库相关记录 可重复操作
     return HttpResponse("删除session")
+
+
+def register(request):
+    if request.method == "GET":
+        return render(request, "register.html")
+    else:
+        print(88)
+        if request.POST.get("name") and request.POST.get("passwd"):
+            models.User.create(request.POST.get("name"), request.POST.get("passwd"))
+            return render(request, "token_login.html")
+        else:
+            return render(request, "register.html", {"msg":"输入不合法"})
