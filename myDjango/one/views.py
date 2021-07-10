@@ -43,7 +43,6 @@ def get_salt_cookie(request):
 
 
 def login(request):
-
     login_info = request.COOKIES.get("login", None)
     if login_info:
         name, passwd = login_info.split("-")
@@ -70,8 +69,14 @@ def login(request):
 
 
 def set_session(request):
-    request.session["dir1"] = "file1"   #session 对象   会生成一个sessionid  放在cookie 里
+    """
+    可以有多个session  但只有一个sessionid,对于每个客户端，生成一条数据库记录，发生改变时，sessionid 不变，sessionData 改变
+    session 不会重复设置，除非有更新或者被删除了
+    """
     request.session["dir"] = "file"   #session 对象   会生成一个sessionid  放在cookie 里
+    request.session["dir1"] = "file1"   #session 对象   会生成一个sessionid  放在cookie 里
+    request.session["dir2"] = "file2"   #session 对象   会生成一个sessionid  放在cookie 里
+    request.session["dir3"] = "file3"   #session 对象   会生成一个sessionid  放在cookie 里
     """
     global_settings
     
@@ -90,5 +95,15 @@ def set_session(request):
 
 
 def get_session(request):
-    # return HttpResponse(request.session.get("dir"))
-    return HttpResponse("hello")
+    return HttpResponse(request.session.get("dir"))
+    # return HttpResponse("hello")
+
+
+def del_session(request):
+    # try:
+    #     del request.session["dir"]   # 删除单个session
+    # except Exception as e:
+    #     pass
+    # request.session.clear()  #清空所有session 可重复操作
+    request.session.flush()  #清空所有session和相应的seesionid  并且删除删除数据库相关记录 可重复操作
+    return HttpResponse("删除session")
