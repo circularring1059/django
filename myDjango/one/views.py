@@ -1,3 +1,4 @@
+import uuid
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -128,5 +129,12 @@ def token_login(request):
     if request.method == "GET":
         return render(request, "token_login.html")
     if models.User.objects.filter(user_name=request.POST.get("name"), user_passwd=request.POST.get("passwd")).first():
-        return HttpResponse("登入成功")
-    return  redirect("/one/register/")
+        token = generate_token()
+        models.User.objects.filter(user_name=request.POST.get("name"),user_passwd=request.POST.get("passwd")).update(user_token=token)
+        response = HttpResponse("登入成功")
+        response.set_cookie("token", token, max_age=60*60*24, path="/")
+        return response
+    return redirect("/one/token_login/")
+
+def generate_token():
+    return "abcdefg"
