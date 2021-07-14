@@ -17,5 +17,6 @@ urlpatterns = [
     path("login/", views.login),
     path("register/", views.register),
     path("token_login/", views.token_login),
+    path("main/", views.main),
 ]
 

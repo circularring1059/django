@@ -131,10 +131,15 @@ def token_login(request):
     if models.User.objects.filter(user_name=request.POST.get("name"), user_passwd=request.POST.get("passwd")).first():
         token = generate_token()
         models.User.objects.filter(user_name=request.POST.get("name"),user_passwd=request.POST.get("passwd")).update(user_token=token)
-        response = HttpResponse("登入成功")
+        response = HttpResponseRedirect("/one/main/")
         response.set_cookie("token", token, max_age=60*60*24, path="/")
         return response
     return redirect("/one/token_login/")
 
 def generate_token():
     return "abcdefg"
+
+
+def main(request):
+    user = models.User.objects.filter(user_token=request.COOKIES["token"]).first()
+    return render(request, "main.html", locals())
