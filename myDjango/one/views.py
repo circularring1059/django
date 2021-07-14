@@ -125,4 +125,8 @@ def register(request):
 
 
 def token_login(request):
-    return render(request, "token_login.html")
+    if request.method == "GET":
+        return render(request, "token_login.html")
+    if models.User.objects.filter(user_name=request.POST.get("name"), user_passwd=request.POST.get("passwd")).first():
+        return HttpResponse("登入成功")
+    return  redirect("/one/register/")
