@@ -40,3 +40,12 @@ class Book(models.Model):
     """
     book = Book.objects.create_book("*********")   #改为使用create_book方法创建对象
     """
+
+class Blog(models.Model):
+    name = models.CharField(max_length=100)
+    tagline = models.TextField()
+
+    def save(self, *args, **kwargs):
+        print("干活前")   # 保存前做点私活
+        super().save(*args, **kwargs)  # 一定不要忘记这行代码
+        print("干活后") # 保存后又加塞点东西
