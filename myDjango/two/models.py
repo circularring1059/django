@@ -15,3 +15,8 @@ class Car(models.Model):
         verbose_name_plural = verbose_name
         ordering = ["-id", "car_name"]    #默认排序，当然可以是使用orm 排序
 
+
+
+
+class User(models.Model):
+    stu_name = models.CharField(max_length=32,)

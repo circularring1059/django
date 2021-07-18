@@ -40,7 +40,9 @@ class loginViews(View):
         form_stu_name = StuForm(stu_name)
         # print(form_stu_name)
         if form_stu_name.is_valid():
-            print(form_stu_name.cleaned_data())
-            # if form_stu_name.clean().get("stu_name") == "桃子":
-            #     return HttpResponse("登入成功")
+            s = form_stu_name.cleaned_data["stu_name"]
+            if s == "桃子":
+                return HttpResponse("登入成功")
         return HttpResponse("登入失败")
+
+
