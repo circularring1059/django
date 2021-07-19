@@ -12,7 +12,7 @@ class User(models.Model):
     passwd = models.CharField(max_length=256)
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=32, choices=gender, default="女")
-    c_time = models.DateField(auto_created=True)
+    c_time = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name

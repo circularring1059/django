@@ -143,3 +143,5 @@ def generate_token():
 def main(request):
     user = models.User.objects.filter(user_token=request.COOKIES["token"]).first()
     return render(request, "main.html", locals())
+
+

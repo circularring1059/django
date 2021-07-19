@@ -127,6 +127,7 @@ STATICFILES_DIRS = (
 )
 STATIC_URL = '/static/'
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 print(os.path.dirname(os.path.abspath(__file__)))
