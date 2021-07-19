@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,JsonResponse
+from django.conf import settings
+from django.conf.urls.static import static
+
 from app01 import views
 
 def login(request):
@@ -55,4 +58,10 @@ urlpatterns = [
     path('myapp/', include("myapp.urls", namespace="myapp")),
     path("read/",include("two.urls", namespace="read")),  #namespace 区分两url
     path("write/",include("two.urls", namespace="write")),
+    path("three/",include("three.urls", namespace="three")),
 ]
+
+
+urlpatterns = [
+    path(r'admin/',admin.site.urls),
+ ] + static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)

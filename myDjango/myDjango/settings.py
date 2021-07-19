@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'one',
     'myapp',
     "two",
+    "three",
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'myDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '192.168.112.12',  # 数据库主机
+        'HOST': '192.168.10.173',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'root',  # 数据库用户名
         'PASSWORD': 'root',  # 数据库用户密码
@@ -122,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "stat"),
+    os.path.join(BASE_DIR, "static"),
 )
 STATIC_URL = '/static/'
 
