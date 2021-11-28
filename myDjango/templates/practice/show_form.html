@@ -6,19 +6,20 @@
 </head>
 <body>
 <form action="." method="POST">
+    {{ form.non_field_errors }}
+    <div style="color: pink">
+        {{ form.column.errors }}
+        <lablel for="{{ form.column.id_for_label }}">ring改成其他</lablel>
+        {{ form.column }}
+    </div>
     {% csrf_token %}
     {{ test_form.as_p }}
     {{ test_form.as_table }} <!-- 默认就是as_table -->
     {{ test_form.as_ul }}
     <table>{{ book_form }}</table>
     <input type="submit" value="提交">
-    {{ form.non_field_errors }}
+
     <!-- 手动渲染-->
-    <div>
-        {{ form.column.errors }}
-        <lablel for="{{ form.column.id_for_label }}">ring改成其他</lablel>
-        {{ form.column }}
-    </div>
     <div class="fieldWrapper">
     {{ form.sender.errors }}
     <label for="{{ form.sender.id_for_label }}">Your email address:</label>
