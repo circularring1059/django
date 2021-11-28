@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'myapp',
     "two",
     "three",
+    "practice",
 ]
 
 MIDDLEWARE = [
@@ -77,14 +78,20 @@ WSGI_APPLICATION = 'myDjango.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': '192.168.10.173',  # 数据库主机
+#         'PORT': 3306,  # 数据库端口
+#         'USER': 'root',  # 数据库用户名
+#         'PASSWORD': 'root',  # 数据库用户密码
+#         'NAME': 'django'  # 数据库名字
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '192.168.10.173',  # 数据库主机
-        'PORT': 3306,  # 数据库端口
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'root',  # 数据库用户密码
-        'NAME': 'django'  # 数据库名字
+        "ENGINE": 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 # Password validation

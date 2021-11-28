@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if error_message %}
+{{ error_message }}
+{% else %}
+<h1>author is: {{ author }}</h1>
+
+<form action="." method="post">
+{% csrf_token %}
+{% for book in author.author_book.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ book.id }}">
+    <label for="choice{{ forloop.counter }}">{{ book.name }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+{% endif %}
+</form>
+</body>
+</html>

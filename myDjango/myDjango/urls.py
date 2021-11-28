@@ -59,6 +59,7 @@ urlpatterns = [
     path("read/",include("two.urls", namespace="read")),  #namespace 区分两url
     path("write/",include("two.urls", namespace="write")),
     path("three/",include("three.urls", namespace="three")),
+    path("practice/",include("practice.urls", namespace="practice")),
 ]
 
 
