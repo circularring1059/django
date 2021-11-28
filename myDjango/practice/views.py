@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 from .models import Author, Book
-from .form import ShowForm
+from .form import ShowForm, BookForm
 
 
 def list_book(request):
@@ -30,3 +30,9 @@ def show_form(request):
     if test_form.is_valid():
         test_form = test_form.cleaned_data
     return HttpResponse("输入的值为:{}\{}\{}".format(test_form.get('column'), test_form.get('column1'),test_form.get('sender')))
+
+
+def show_book_form(request):
+    book_form = BookForm()
+    print(book_form)
+    return render(request, "practice/show_form.html", locals())

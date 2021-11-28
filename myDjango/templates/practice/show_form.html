@@ -8,11 +8,23 @@
 <form action="." method="POST">
     {% csrf_token %}
     {{ test_form.as_p }}
-    {{ test_form.as_table }} <--! 默认就是as_table>
+    {{ test_form.as_table }} <!-- 默认就是as_table -->
     {{ test_form.as_ul }}
-{#    <br>#}
+    <table>{{ book_form }}</table>
     <input type="submit" value="提交">
-</form>
+    {{ form.non_field_errors }}
+    <!-- 手动渲染-->
+    <div>
+        {{ form.column.errors }}
+        <lablel for="{{ form.column.id_for_label }}">ring改成其他</lablel>
+        {{ form.column }}
+    </div>
+    <div class="fieldWrapper">
+    {{ form.sender.errors }}
+    <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+    {{ form.sender }}
+    </div>
 
+</form>
 </body>
 </html>
